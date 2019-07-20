@@ -1,21 +1,22 @@
 {
-    "name": "slim/slim-skeleton",
-    "description": "A Slim Framework skeleton application for rapid development",
-    "keywords": ["microframework", "rest", "router", "psr7"],
-    "homepage": "http://github.com/slimphp/Slim-Skeleton",
+    "name": "pyymenta/pangya-calculator-middleware",
+    "description": "HWI Generator Middleware",
+    "keywords": ["microframework", "rest", "router", "psr7", "pangya", "gaming", "slimframework"],
+    "homepage": "https://github.com/pyymenta/pangya-calculator-middleware",
     "license": "MIT",
     "authors": [
         {
-            "name": "Josh Lockhart",
-            "email": "info@joshlockhart.com",
-            "homepage": "http://www.joshlockhart.com/"
+            "name": "Lucas Pimenta",
+            "email": "lucas.pimenta94@outlook.com",
+            "homepage": "https://github.com/pyymenta/pangya-calculator-middleware"
         }
     ],
     "require": {
         "php": ">=5.6",
-        "slim/slim": "^3.1",
+        "monolog/monolog": "^1.17",
+        "phpoffice/phpspreadsheet": "^1.8",
         "slim/php-view": "^2.0",
-        "monolog/monolog": "^1.17"
+        "slim/slim": "^3.1"
     },
     "require-dev": {
         "phpunit/phpunit": ">=5.0"
