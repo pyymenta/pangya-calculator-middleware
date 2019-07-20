@@ -1,27 +1,60 @@
-# Slim Framework 3 Skeleton Application
+# Pangya HWI Middleware
 
-Use this skeleton application to quickly setup and start working on a new Slim Framework 3 application. This application uses the latest Slim 3 with the PHP-View template renderer. It also uses the Monolog logger.
-
-This skeleton application was built for Composer. This makes setting up a new Slim Framework application quick and easy.
+This project uses the [Keorenca](https://kyorenca.wordpress.com/2013/01/27/geradores-calculadora-e-consideracoes-sobre-calculos/) concept, using his HWIs generator based in XLS files to [calculate shot](https://www.youtube.com/watch?v=uVhy7aj_Akg).
 
 ## Install the Application
 
-Run this command from the directory in which you want to install your new Slim Framework application.
+### Dependencies
 
-    php composer.phar create-project slim/slim-skeleton [my-app-name]
+This projects depends on:
 
-Replace `[my-app-name]` with the desired directory name for your new application. You'll want to:
+- Composer
+- PHPUnit
+- Some php dependencies(php-xml, php-mbstring, php-zip)
 
-* Point your virtual host document root to your new application's `public/` directory.
-* Ensure `logs/` is web writeable.
+### Initial Setup
 
-To run the application in development, you can run these commands 
+#### Clone this repository
 
-	cd [my-app-name]
-	php composer.phar start
+```sh
+
+git clone https://github.com/pyymenta/pangya-calculator-middleware.git
+
+```
+
+#### Install dependencies
+
+```sh
+
+composer install
+
+```
+
+### Running the App
+
+To run the application in development, you can run these commands
+
+```sh
+cd pangya-calculator-middleware
+composer start
+```
+
+### Running Tests
 
 Run this command in the application directory to run the test suite
 
-	php composer.phar test
+```sh
+composer test
+```
 
-That's it! Now go build something cool.
+### Some hints
+
+- Point your virtual host document root to your new application's `public/` directory.
+
+- Ensure `logs/` is web writeable.
+
+### License
+
+[MIT License](./LICENSE)
+
+Made with [Slim Framework](http://www.slimframework.com/)
