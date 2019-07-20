@@ -26,9 +26,9 @@ return function (App $app) {
     $app->get('/abacate', function (Request $request, Response $response, array $args) use ($container) {
         // Sample log message
         $container->get('logger')->info("Slim-Skeleton '/abacate' route");
-        
+
         $response = array('bla' => 'blabla');
 
-        echo json_encode($response);
+        return json_encode($response);
     });
 };

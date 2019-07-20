@@ -21,10 +21,10 @@ class HomepageTest extends BaseTestCase
      */
     public function testGetHomepageWithGreeting()
     {
-        $response = $this->runApp('GET', '/name');
+        $response = $this->runApp('GET', '/abacate');
 
         $this->assertEquals(200, $response->getStatusCode());
-        $this->assertContains('Hello name!', (string)$response->getBody());
+        $this->assertContains('{"bla":"blabla"}', (string)$response->getBody());
     }
 
     /**
