@@ -37,7 +37,7 @@ return function (App $app) {
 };
 
 function pinRouterBuilder ($prefix, $shotType) {
-    return function (Request $request, Response $response, array $args) use ($container) {
+    return function (Request $request, Response $response, array $args) use ($prefix, $shotType) {
         if( !isset($args['club']) ) {
             return json_encode([]);
         }
