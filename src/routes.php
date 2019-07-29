@@ -5,8 +5,6 @@ use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-
-
 use PangyaCalculateMiddleware\PinGenerator;
 
 return function (App $app) {
@@ -14,16 +12,18 @@ return function (App $app) {
 
     $app->group('/pins',
         function () {
-            $this->get('/backspin',
-                function (Request $request, Response $response, array $args) use ($container) {
-                    // Sample log message
+            $shotTypes = [
+                ['prefix' => 'bs_', 'shotType' => 'backspin'],
+                ['prefix' => 'cobra_', 'shotType' => 'cobra'],
+                ['prefix' => 'dunk_', 'shotType' => 'dunk'],
+                ['prefix' => 'tomahawk_', 'shotType' => 'tomahawk'],
+                ['prefix' => 'spike_', 'shotType' => 'spike'],
+            ];
 
-                    $generator = new PinGenerator();
-                    $response = $generator->getGeneratorSimpleValue('bs_1W.xls', 'backspin');
-
-                    return json_encode($response);
-                }
-            );
+            foreach($shotTypes as $shotType) {
+                $this->get('/' . $shotType['shotType'] . '/{club}',
+                    pinRouterBuilder($shotType['prefix'], $shotType['shotType']));
+            }
         }
     );
 
