@@ -35,3 +35,24 @@ return function (App $app) {
         return $this->renderer->render($response, 'index.phtml', $args);
     });
 };
+
+function pinRouterBuilder ($prefix, $shotType) {
+    return function (Request $request, Response $response, array $args) use ($container) {
+        if( !isset($args['club']) ) {
+            return json_encode([]);
+        }
+
+        $generator = new PinGenerator();
+
+        $club = $args['club'];
+
+        try {
+            $response = $generator->
+                getGeneratorSimpleValue($prefix . strtoupper($club) . '.xls', $shotType);
+        } catch (Exception $exception) {
+            return json_encode([]);
+        }
+
+        return json_encode($response);
+    };
+}
