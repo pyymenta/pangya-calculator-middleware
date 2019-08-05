@@ -1,11 +1,11 @@
 <?php
-include('PangyaCalculateMiddleware/PinGenerator.php');
+include_once('PangyaCalculateMiddleware/PinRouterBuilder.php');
 
 use Slim\App;
 use Slim\Http\Request;
 use Slim\Http\Response;
 
-use PangyaCalculateMiddleware\PinGenerator;
+use PangyaCalculateMiddleware\PinRouterBuilder;
 
 return function (App $app) {
     $container = $app->getContainer();
@@ -22,7 +22,7 @@ return function (App $app) {
 
             foreach($shotTypes as $shotType) {
                 $this->get('/' . $shotType['shotType'] . '/{power1w}/{club}',
-                    pinRouterBuilder($shotType['prefix'], $shotType['shotType']));
+                    PinRouterBuilder::createRouter($shotType));
             }
         }
     );
@@ -35,25 +35,3 @@ return function (App $app) {
         return $this->renderer->render($response, 'index.phtml', $args);
     });
 };
-
-function pinRouterBuilder ($prefix, $shotType) {
-    return function (Request $request, Response $response, array $args) use ($prefix, $shotType) {
-        if( !isset($args['club']) || !isset($args['power1w']) ) {
-            return json_encode([]);
-        }
-
-        $club = $args['club'];
-
-        $power1w = $args['power1w'];
-
-        $generator = new PinGenerator($prefix . strtoupper($club) . '.xls', $shotType);
-
-        try {
-            $response = $generator->getPinValues($power1w);
-        } catch (Exception $exception) {
-            return json_encode([]);
-        }
-
-        return json_encode($response);
-    };
-}
