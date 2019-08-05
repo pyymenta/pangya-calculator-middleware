@@ -21,7 +21,7 @@ return function (App $app) {
             ];
 
             foreach($shotTypes as $shotType) {
-                $this->get('/' . $shotType['shotType'] . '/{club}',
+                $this->get('/' . $shotType['shotType'] . '/{power1w}/{club}',
                     pinRouterBuilder($shotType['prefix'], $shotType['shotType']));
             }
         }
@@ -38,17 +38,18 @@ return function (App $app) {
 
 function pinRouterBuilder ($prefix, $shotType) {
     return function (Request $request, Response $response, array $args) use ($prefix, $shotType) {
-        if( !isset($args['club']) ) {
+        if( !isset($args['club']) || !isset($args['power1w']) ) {
             return json_encode([]);
         }
 
-        $generator = new PinGenerator();
-
         $club = $args['club'];
 
+        $power1w = $args['power1w'];
+
+        $generator = new PinGenerator($prefix . strtoupper($club) . '.xls', $shotType);
+
         try {
-            $response = $generator->
-                getGeneratorSimpleValue($prefix . strtoupper($club) . '.xls', $shotType);
+            $response = $generator->getPinValues($power1w);
         } catch (Exception $exception) {
             return json_encode([]);
         }
