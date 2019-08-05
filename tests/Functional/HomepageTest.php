@@ -16,25 +16,20 @@ class HomepageTest extends BaseTestCase
         $this->assertNotContains('Hello', (string)$response->getBody());
     }
 
-    /**
-     * Test that the index route with optional name argument returns a rendered greeting
-     */
-    public function testGetHomepageWithGreeting()
+    public function testNotEnoughParamsPin()
     {
-        $response = $this->runApp('GET', '/abacate');
+        $response = $this->runApp('GET', '/pins/tomahawk/260');
 
-        $this->assertEquals(200, $response->getStatusCode());
-        $this->assertContains('{"bla":"blabla"}', (string)$response->getBody());
+        $this->assertEquals(404, $response->getStatusCode());
     }
-
-    /**
-     * Test that the index route won't accept a post request
-     */
-    public function testPostHomepageNotAllowed()
+    
+    public function testParamsPin()
     {
-        $response = $this->runApp('POST', '/', ['test']);
+        $response = $this->runApp('GET', '/pins/tomahawk/260/2w');
 
-        $this->assertEquals(405, $response->getStatusCode());
-        $this->assertContains('Method not allowed', (string)$response->getBody());
+        $expectResponse = '[{"percent":1,"pin":260.1,"hwi":1.0620375590931914},{"percent":0.9000000000000004,"pin":229.70000000000013,"hwi":0.7515326566883439},{"percent":0.8000000000000007,"pin":200.50000000000023,"hwi":0.5443771176487763}]';
+        
+        $this->assertEquals(200, $response->getStatusCode());
+        $this->assertContains($expectResponse, (string)$response->getBody());
     }
 }
