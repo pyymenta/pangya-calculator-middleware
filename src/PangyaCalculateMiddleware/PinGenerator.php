@@ -2,10 +2,7 @@
 
 namespace PangyaCalculateMiddleware;
 
-use PhpOffice\PhpSpreadsheet\Spreadsheet;
-use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\IOFactory;
-
 
 class PinGenerator
 {
@@ -36,7 +33,7 @@ class PinGenerator
     return $pins;
   }
 
-  private function setPinPower($power1w) 
+  private function setPinPower($power1w)
   {
     $this->activeSheet->setCellValue(self::POWER_1W_CELL, $power1w);
   }
