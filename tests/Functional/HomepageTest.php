@@ -22,13 +22,13 @@ class HomepageTest extends BaseTestCase
 
         $this->assertEquals(404, $response->getStatusCode());
     }
-    
+
     public function testParamsPin()
     {
         $response = $this->runApp('GET', '/pins/tomahawk/260/2w');
 
         $expectResponse = '[{"percent":1,"pin":260.1,"hwi":1.0620375590931914},{"percent":0.9000000000000004,"pin":229.70000000000013,"hwi":0.7515326566883439},{"percent":0.8000000000000007,"pin":200.50000000000023,"hwi":0.5443771176487763}]';
-        
+
         $this->assertEquals(200, $response->getStatusCode());
         $this->assertContains($expectResponse, (string)$response->getBody());
     }
