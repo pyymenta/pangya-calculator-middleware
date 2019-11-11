@@ -1,6 +1,6 @@
 # Pangya HWI Middleware
 
-[![Travis (.org)](https://img.shields.io/travis/pyymenta/pangya-calculator-middleware)](https://travis-ci.org/pyymenta/pangya-calculator-middleware)
+[![Travis (.org)](https://travis-ci.org/pyymenta/pangya-calculator-middleware.svg?branch=master)](https://travis-ci.org/pyymenta/pangya-calculator-middleware)
 [![GitHub](https://img.shields.io/github/license/pyymenta/pangya-calculator-middleware)](./LICENSE)
 
 This project uses the [Keorenca](https://kyorenca.wordpress.com/2013/01/27/geradores-calculadora-e-consideracoes-sobre-calculos/) concept, using his HWIs generator based in XLS files to [calculate shot](https://www.youtube.com/watch?v=uVhy7aj_Akg).
